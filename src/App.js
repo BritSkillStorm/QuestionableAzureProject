@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { useState } from "react";
+import { PageLayout } from "./Components/PageLayout";
+import {
+  AuthenticatedTemplate,
+  UnauthenticatedTemplate,
+  useMsal,
+} from "@azure/msal-react";
+import { loginRequest } from "./authConfig";
+import Button from "react-bootstrap/Button";
+import { ProfileContent } from "./Components/ProfileContent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PageLayout>
+      <AuthenticatedTemplate>
+        <ProfileContent />
+      </AuthenticatedTemplate>
+      <UnauthenticatedTemplate>
+        <p>You are not signed in! Please sign in.</p>
+      </UnauthenticatedTemplate>
+    </PageLayout>
   );
 }
 
